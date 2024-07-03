@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Profile page - {{user}} {% endblock %}
+
+{% block maincontent %}
+  <section class="container py-5">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="text-center">Profile page</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <ul class="list-group">
+          <li class="list-group-item active">Profile detail</li>
+          <li class="list-group-item">
+            <a class="nav-link" href="{% url 'user-profile-edit-page' %}">Edit profile</a>
+          </li>
+          <li class="list-group-item">
+            <a class="nav-link" href="{% url 'user-change-password-page' %}">Change password</a>
+          </li>
+          <li class="list-group-item">
+            <a class="nav-link" href="{% url 'user-change-password-two-page' %}">Change password without old</a>
+          </li>
+          <li class="list-group-item">
+            <a class="nav-link" href="{% url 'user-logout-page' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-8">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="https://media.istockphoto.com/id/1327592506/vector/default-avatar-photo-placeholder-icon-grey-profile-picture-business-man.jpg?s=612x612&w=0&k=20&c=BpR0FVaEa5F24GIw7K8nMWiiGmbb8qmhfkpXcp1dhQg=" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Name: {{user.first_name}} {{user.last_name}}</h5>
+                <p class="card-text">Email: {{user.email}}</p>
+                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

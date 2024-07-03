@@ -16,7 +16,45 @@
     </style>
   </head>
   <body>
-    <header></header>
+    <header>
+      <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'home-page' %}">Portfolio.</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            {% if user.is_authenticated %}
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'home-page' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'user-profile-page' %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'user-logout-page' %}">Logout</a>
+                </li>
+              </ul>
+            {% else %}
+              <div class="d-flex gap-3">
+                <a class="btn btn-outline-success" href="{% url 'user-login-page' %}">Login</a>
+                <a class="btn btn-outline-info" href="{% url 'user-register-page' %}">Register</a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+    </header>
+    {% if messages %}
+      <section class="d-flex justify-content-end">
+        {% for data in messages %}
+          <div class="alert alert-{{data.tags}} w-25 me-3 mt-2" role="alert">
+            {{data}}
+          </div>
+        {% endfor %}     
+      </section>
+    {% endif %}
     <main>
       {% block maincontent %}{% endblock %}
     </main>
